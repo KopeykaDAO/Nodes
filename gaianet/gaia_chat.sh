@@ -24,7 +24,7 @@ if ! grep -q "$USER_NODE_URL" "$SCRIPT_NAME"; then
     exit 1
 fi
 
-curl -o https://raw.githubusercontent.com/KopeykaDAO/Nodes/main/gaianet/Dockerfile
+curl -o Dockerfile https://raw.githubusercontent.com/KopeykaDAO/Nodes/main/gaianet/Dockerfile
 
 
 echo "Building Docker image..."
