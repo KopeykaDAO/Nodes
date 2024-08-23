@@ -63,10 +63,10 @@ def main_loop():
         reply_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         # Логирование вопроса и ответа
-        log_message("Node replied", f"Q ({question_time}): {random_question} A ({reply_time}): {reply}")
+        log_message("Node replied", f"Q ({question_time}): {random_question} A ({reply_time}): {reply}\n\n")
 
         # Вывод в консоль
-        print(f"Q ({question_time}): {random_question}\nA ({reply_time}): {reply}")
+        print(f"Q ({question_time}): {random_question}\nA ({reply_time}): {reply}\n\n")
 
         # Задержка перед следующим запросом
         delay = random.randint(MIN_DELAY, MAX_DELAY)
