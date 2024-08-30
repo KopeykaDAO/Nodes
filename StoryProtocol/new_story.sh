@@ -2,6 +2,8 @@
 
 HOME_DIR=$(eval echo ~$USER)
 
+sudo apt-get install wget jq lz4 aria2 pv -y
+
 mkdir -p ~/story/geth
 mkdir -p ~/story/story
 
@@ -89,7 +91,6 @@ check_service_status "story.service"
 
 sudo systemctl stop story
 sudo systemctl stop geth
-sudo apt-get install wget lz4 aria2 pv -y
 
 
 cd $HOME
