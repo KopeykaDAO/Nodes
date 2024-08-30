@@ -1,6 +1,7 @@
 #!/bin/bash
 
 HOME_DIR=$(eval echo ~$USER)
+sudo echo
 
 mkdir -p ~/story/geth
 mkdir -p ~/story/story
