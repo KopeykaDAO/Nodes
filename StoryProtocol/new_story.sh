@@ -112,10 +112,10 @@ fi
 rm -rf ~/.story/story/data
 rm -rf ~/.story/geth/iliad/geth/chaindata
 
-sudo mkdir -p /root/.story/story/data
-lz4 -d Story_snapshot.lz4 | pv | sudo tar xv -C /root/.story/story/
-sudo mkdir -p /root/.story/geth/iliad/geth/chaindata
-lz4 -d Geth_snapshot.lz4 | pv | sudo tar xv -C /root/.story/geth/iliad/geth/
+mkdir -p ~/.story/story/data
+lz4 -d Story_snapshot.lz4 | pv | sudo tar xv -C ~/.story/story/
+mkdir -p ~/.story/geth/iliad/geth/chaindata
+lz4 -d Geth_snapshot.lz4 | pv | sudo tar xv -C ~/.story/geth/iliad/geth/
 
 
 sudo systemctl start story
