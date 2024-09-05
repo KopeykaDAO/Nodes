@@ -119,7 +119,7 @@ rm Story_snapshot.lz4
 mkdir -p ~/.story/geth/iliad/geth/chaindata
 lz4 -d Geth_snapshot.lz4 | pv | sudo tar xv -C ~/.story/geth/iliad/geth/
 rm Geth_snapshot.lz4
-sudo chown $USER:$USER  ~/.story
+sudo chown $USER:$USER  -R ~/.story
 
 sudo systemctl start story
 sudo systemctl start geth
