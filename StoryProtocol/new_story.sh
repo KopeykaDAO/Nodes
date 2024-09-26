@@ -92,33 +92,13 @@ check_service_status "story.service"
 sudo systemctl stop story
 sudo systemctl stop geth
 
+cp $HOME/.story/story/data/priv_validator_state.json $HOME/.story/story/priv_validator_state.json.backup
 
-cd $HOME
-if curl -s --head https://vps6.josephtran.xyz/Story/Geth_snapshot.lz4 | head -n 1 | grep "200" > /dev/null; then
-    echo "Snapshot found, downloading..."
-    aria2c -x 16 -s 16 https://vps6.josephtran.xyz/Story/Geth_snapshot.lz4 -o Geth_snapshot.lz4
-else
-    echo "No snapshot found."
-fi
+rm -rf $HOME/.story/story/data
+rm -rf $HOME/.story/geth/iliad/geth/chaindata
 
-cd $HOME
-if curl -s --head https://vps6.josephtran.xyz/Story/Story_snapshot.lz4 | head -n 1 | grep "200" > /dev/null; then
-    echo "Snapshot found, downloading..."
-    aria2c -x 16 -s 16 https://vps6.josephtran.xyz/Story/Story_snapshot.lz4 -o Story_snapshot.lz4
-else
-    echo "No snapshot found."
-fi
-
-rm -rf ~/.story/story/data
-rm -rf ~/.story/geth/iliad/geth/chaindata
-
-mkdir -p ~/.story/story/data
-lz4 -d Story_snapshot.lz4 | pv | sudo tar xv -C ~/.story/story/
-rm Story_snapshot.lz4
-mkdir -p ~/.story/geth/iliad/geth/chaindata
-lz4 -d Geth_snapshot.lz4 | pv | sudo tar xv -C ~/.story/geth/iliad/geth/
-rm Geth_snapshot.lz4
-sudo chown $USER:$USER  -R ~/.story
-
-sudo systemctl start story
+curl https://server-5.itrocket.net/testnet/story/story_2024-09-26_901736_snap.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.story
+mv $HOME/.story/story/priv_validator_state.json.backup $HOME/.story/story/data/priv_validator_state.json
 sudo systemctl start geth
+sudo systemctl start story
+sudo journalctl -u story -f
