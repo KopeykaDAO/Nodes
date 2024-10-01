@@ -88,16 +88,13 @@ sleep 2
 sudo systemctl restart story
 check_service_status "story.service"
 
-
 sudo systemctl stop story
 sudo systemctl stop geth
 
 cp $HOME/.story/story/data/priv_validator_state.json $HOME/.story/story/priv_validator_state.json.backup
-
 rm -rf $HOME/.story/story/data
 rm -rf $HOME/.story/geth/iliad/geth/chaindata
-
-curl https://server-5.itrocket.net/testnet/story/story_2024-09-26_901736_snap.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.story
+curl https://server-5.itrocket.net/testnet/story/story_2024-10-01_1031769_snap.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.story
 mv $HOME/.story/story/priv_validator_state.json.backup $HOME/.story/story/data/priv_validator_state.json
 sudo systemctl start geth
 sudo systemctl start story
