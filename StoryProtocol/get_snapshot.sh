@@ -14,10 +14,10 @@ wget -O story_snapshot.lz4 https://snapshots2.mandragora.io/story/story_snapshot
 
 # Decompress story-geth and story snapshots
 lz4 -c -d geth_snapshot.lz4 | tar -xv -C $HOME/.story/geth/iliad/geth
+sudo rm -v geth_snapshot.lz4
 lz4 -c -d story_snapshot.lz4 | tar -xv -C $HOME/.story/story
 
 # Delete downloaded story-geth and story snapshots
-sudo rm -v geth_snapshot.lz4
 sudo rm -v story_snapshot.lz4
 
 # Restore your validator state
