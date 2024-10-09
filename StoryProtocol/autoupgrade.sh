@@ -19,9 +19,13 @@ source $HOME/.profile
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
 
 echo "export DAEMON_NAME=story" >> $HOME/.profile
-echo "export DAEMON_HOME=~/.story/story" >> $HOME/.profile
-echo "export DAEMON_DATA_BACKUP_DIR=~/.story/story/cosmovisor/backup" >> $HOME/.profile
+echo "export DAEMON_HOME=$HOME/.story/story" >> $HOME/.profile
+echo "export DAEMON_DATA_BACKUP_DIR=$HOME/.story/story/cosmovisor/backup" >> $HOME/.profile
 source $HOME/.profile
+
+cosmovisor init $HOME/story/story/story
+mkdir -p $HOME/.story/story/cosmovisor/upgrades
+mkdir -p $HOME/.story/story/cosmovisor/backup
 
 sudo tee /etc/systemd/system/story.service > /dev/null <<EOF
 [Unit]
@@ -31,8 +35,8 @@ After=network.target
 [Service]
 User=vpsuser
 Type=simple
-WorkingDirectory=/home/vpsuser/.story/story
-ExecStart=/home/vpsuser/story/story/story run
+WorkingDirectory=$HOME/.story/story
+ExecStart=$HOME/go/bin/cosmovisor run run
 Restart=always
 RestartSec=3
 LimitNOFILE=infinity
@@ -51,11 +55,7 @@ EOF
 sudo systemctl daemon-reload 
 sudo systemctl restart story
 
-cosmovisor init $HOME/story/story/story
-mkdir -p $HOME/.story/story/cosmovisor/upgrades
-mkdir -p $HOME/.story/story/cosmovisor/backup
-
-echo -e "\n\n \033[0;32m===============Version of your node===============\033[0m"
+echo -e "\n\n \033[0;32m=============== Version of your node ===============\033[0m"
 
 cosmovisor run version
 
@@ -66,4 +66,4 @@ wget -O story.tar.gz $(curl -s https://api.github.com/repos/piplabs/story/releas
 tar --strip-components=1 -xzf story.tar.gz -C ~/story/story/upgrade
 rm story.tar.gz
 
-cosmovisor add-upgrade v0.11.0 $HOME/story/story/upgrade/story --upgrade-height 1325860 --force
+cosmovisor add-upgrade v0.11.0 $HOME/story/story/upgrade/story --upgrade-height 1325860
