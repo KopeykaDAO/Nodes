@@ -10,8 +10,7 @@ tar --strip-components=1 -xzf story.tar.gz -C story
 rm story.tar.gz
 
 rm geth/geth
-wget -O story-geth.tar.gz $(curl -s https://api.github.com/repos/piplabs/story-geth/releases/latest | jq -r '.assets[] | select(.name == "geth-linux-amd64") | .browser_download_url')
-tar --strip-components=1 -xzf story-geth.tar.gz -C geth
-rm story-geth.tar.gz
+wget -O geth $(curl -s https://api.github.com/repos/piplabs/story-geth/releases/latest | jq -r '.assets[] | select(.name == "geth-linux-amd64") | .browser_download_url')
+mv geth geth/
 
 sudo systemctl start story
