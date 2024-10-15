@@ -2,7 +2,7 @@
 
 HOME_DIR=$(eval echo ~$USER)
 cd ~/story
-sudo systemctl stop story
+sudo systemctl stop story geth
 
 rm story/story
 wget -O story.tar.gz $(curl -s https://api.github.com/repos/piplabs/story/releases/latest | jq .body | grep -oP '(?<=\[Linux 64-Bit Intel AMD \(x86_64\)\]\().*?(?=\))')
@@ -13,4 +13,4 @@ rm geth/geth
 wget -O story-geth $(curl -s https://api.github.com/repos/piplabs/story-geth/releases/latest | jq -r '.assets[] | select(.name == "geth-linux-amd64") | .browser_download_url')
 mv story-geth geth/geth
 
-sudo systemctl start story
+sudo systemctl start story geth
