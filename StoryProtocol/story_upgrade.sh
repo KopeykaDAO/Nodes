@@ -12,5 +12,6 @@ rm story.tar.gz
 rm geth/geth
 wget -O story-geth $(curl -s https://api.github.com/repos/piplabs/story-geth/releases/latest | jq -r '.assets[] | select(.name == "geth-linux-amd64") | .browser_download_url')
 mv story-geth geth/geth
+chmod +x geth/geth
 
 sudo systemctl start story geth
