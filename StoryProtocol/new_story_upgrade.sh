@@ -5,7 +5,7 @@ cd ~/story
 sudo systemctl stop story geth
 
 rm story/story
-wget -O story.tar.gz $(curl -s https://github.com/piplabs/story/releases/download/v0.12.0/story-linux-amd64 | jq .body | grep -oP '(?<=\[Linux 64-Bit Intel AMD \(x86_64\)\]\().*?(?=\))')
+wget -O story.tar.gz $(curl -s https://github.com/piplabs/story/archive/refs/tags/v0.12.0.tar.gz | jq .body | grep -oP '(?<=\[Linux 64-Bit Intel AMD \(x86_64\)\]\().*?(?=\))')
 tar --strip-components=1 -xzf story.tar.gz -C story
 rm story.tar.gz
 
