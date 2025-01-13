@@ -14,7 +14,7 @@ fi
 
 read -p "Enter the ADDRESS: " ADDRESS
 
-NODE_URL="https://$ADDRESS.us.gaianet.network/v1/chat/completions"
+NODE_URL="https://$ADDRESS.gaia.domains/v1/chat/completions"
 
 echo "Updating NODE_URL in the script..."
 sed -i "s|NODE_URL = .*|NODE_URL = \"$NODE_URL\"|" $SCRIPT_NAME
