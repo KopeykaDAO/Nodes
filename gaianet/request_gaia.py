@@ -6,7 +6,7 @@ from faker import Faker
 from datetime import datetime
 
 # Константы
-NODE_URL = "https://[АДРЕС].us.gaianet.network/v1/chat/completions"
+NODE_URL = "https://[АДРЕС].gaia.domains/v1/chat/completions"
 HEADERS = {
     "Accept": "application/json",
     "Content-Type": "application/json"
